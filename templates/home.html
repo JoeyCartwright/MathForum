@@ -6,7 +6,7 @@
 <h1>This is a home page</h1>
 
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+<p>Hi {{ user.username }}!</p>
   {% else %}
   <p>You are not logged in</p>
   {% endif %}
