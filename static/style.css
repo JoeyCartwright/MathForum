@@ -1,0 +1,23 @@
+body {
+	background-color: black;
+	color: #a3f20f;
+	
+}
+
+h1 {
+	color: #a3f20f;
+	text-align: center;
+}
+p {
+	color: #a3f20f;
+	text-align: center;
+}
+h2 {
+	color: #a3f20f;
+}
+
+.navbar-brand {
+	font-size: 28px;
+	
+	color: #a3f20f !important;
+}
