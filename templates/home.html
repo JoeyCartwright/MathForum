@@ -3,7 +3,12 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>This is a home page</h1>
+{% for post in post_list %}
+  <div class="post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.body }}</p>
+  </div>
+{% endfor %}
 
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
