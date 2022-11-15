@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from datetime import datetime, date
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -9,6 +10,7 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    post_date = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.title
