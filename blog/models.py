@@ -6,7 +6,7 @@ from datetime import datetime, date
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
-    author = models.ForeignKey(
+    author = models.ForeignKey( 
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )

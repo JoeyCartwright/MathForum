@@ -4,8 +4,17 @@
 {% block content %}
 <div class="post-entry">
   <h2>{{ post.title }}</h2>
+  <p>by {{ post.author }} | {{ post.post_date }} </p><hr>
   <p>{{ post.body }}</p>
-</div>
-<p><a href="{% url 'post_edit' post.pk %}"class="btn btn-success">Edit Mathache</a></p>
-<p><a href="{% url 'post_delete' post.pk %}"class="btn btn-success">Delete Mathache</a></p>
+
+
+{% if user.is_authenticated %}
+  {% if user.id == post.author.id %}
+  <div class=editlinks>
+  <a href="{% url 'post_edit' post.pk %}">(Edit)</a>
+  <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
+	{% endif %}
+	{% endif %}
+  </div>
+  </div>
 {% endblock content %}
