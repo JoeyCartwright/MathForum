@@ -6,6 +6,6 @@
   <h2>{{ post.title }}</h2>
   <p>{{ post.body }}</p>
 </div>
-<p><a href="{% url 'post_edit' post.pk %}">+ Edit Mathache</a></p>
-<p><a href="{% url 'post_delete' post.pk %}">+ Delete Mathache</a></p>
+<p><a href="{% url 'post_edit' post.pk %}"class="btn btn-success">Edit Mathache</a></p>
+<p><a href="{% url 'post_delete' post.pk %}"class="btn btn-success">Delete Mathache</a></p>
 {% endblock content %}
