@@ -5,14 +5,18 @@
 {% block content %}
 {% for post in post_list %}
   <div class="post-entry">
-    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+	  <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+	  <p>by {{ post.author }} | {{ post.post_date }} </p><hr>
     <p>{{ post.body }}</p>
+    {% if user.is_authenticated %}
+    	{% if user.id == post.author.id %}
+	<div class="editlinks">
+	<a href="{% url 'post_edit' post.pk %}">(Edit)</a>
+	<a href="{% url 'post_delete' post.pk %}">(Delete)</a>
+	</div>
+	  {% endif %}
+	  {% endif %}
   </div>
 {% endfor %}
 
-{% if user.is_authenticated %}
-<p>Hi {{ user.username }}!</p>
-  {% else %}
-  <p>You are not logged in</p>
-  {% endif %}
 {% endblock content %}
