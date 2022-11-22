@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post, Comment
-from .forms import PostForm, EditForm, CommentForm
+from .forms import PostForm, EditForm, CommentForm, CommentEditForm
 from django.urls import reverse_lazy
 
 
@@ -20,6 +20,16 @@ class AddCommentView(CreateView):
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentEditForm 
+    template_name = "comment_edit.html"
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = "post_delete.html"
+    success_url = reverse_lazy("home")
 
 class BlogDetailView(DetailView):
     model = Post

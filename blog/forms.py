@@ -27,12 +27,26 @@ class EditForm(forms.ModelForm):
                 'body': forms.Textarea(attrs={'class': 'form-control'})
                 }
 
-class CommentForm(forms.ModelForm):
+class CommentEditForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('subject', 'body')
 
         widgets = {
                 'subject': forms.TextInput(attrs={'class': 'form-control'}),
+                'body:': forms.Textarea(attrs={'class': 'form-control'})
+                }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('subject', 'author', 'body')
+
+        widgets = {
+                'subject': forms.TextInput(attrs={'class': 'form-control'}),
+                'author': forms.TextInput(attrs={'class': 'form-control',
+                                                 'value': '',
+                                                 'id': 'user',
+                                                 'type': 'hidden'}),
                 'body': forms.Textarea(attrs={'class': 'form-control'}),
                 }
