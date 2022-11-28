@@ -7,6 +7,12 @@
   <p>by {{ post.author }} | {{ post.post_date }} </p><hr>
   <p>{{ post.body }}</p>
 
+  <form action="{% url 'like_post' post.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button> {{ total_likes }} - Likes
+  </form>
+
+
 {% if user.is_authenticated %}
   {% if user.id == post.author.id %}
   <div class=editlinks>

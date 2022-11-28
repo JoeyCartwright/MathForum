@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from datetime import datetime, date
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -11,6 +12,10 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
     post_date = models.DateField(auto_now=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_post')
+
+    def total_likes(self):
+        return self.likes.count()
     
 
     def __str__(self):

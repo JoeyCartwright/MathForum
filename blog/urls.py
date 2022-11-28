@@ -9,6 +9,7 @@ from .views import (
     AddCommentView,
     CommentUpdateView,
     CommentDeleteView,
+    LikeView,
     )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path("Mathache/<int:pk>/comment/edit/", BlogUpdateView.as_view(), name="post_edit"),
     path("Mathache/<int:pk>/comment/delete/", BlogDeleteView.as_view(), name="post_delete"),
     path("", BlogListView.as_view(), name="home"),
+    path('like/<int:pk>', LikeView, name="like_post"),
 ]

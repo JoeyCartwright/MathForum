@@ -2,7 +2,15 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post, Comment
 from .forms import PostForm, EditForm, CommentForm, CommentEditForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
+
 
 
 
@@ -34,6 +42,13 @@ class CommentDeleteView(DeleteView):
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(BlogDetailView, self).get_context_data (**kwargs)
+        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+        context["total_likes"] = total_likes
+        return context
 
 class BlogCreateView(CreateView):
     model = Post
