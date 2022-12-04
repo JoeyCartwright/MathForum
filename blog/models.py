@@ -11,6 +11,7 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    cover = models.ImageField(upload_to='images/', blank=True)
     post_date = models.DateField(auto_now=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_post')
 
@@ -34,6 +35,7 @@ class Comment(models.Model):
             on_delete=models.CASCADE,
             default=1
             )
+    cover = models.ImageField(upload_to='images/', blank=True)
     date_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):

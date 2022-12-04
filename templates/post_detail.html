@@ -6,6 +6,11 @@
   <h2>{{ post.title }}</h2>
   <p>by {{ post.author }} | {{ post.post_date }} </p><hr>
   <p>{{ post.body }}</p>
+  {% if post.cover %}
+    <img src="{{ post.cover.url }}" alt="{{ post.title }}" width="500" height="450">
+  {% endif %}
+  
+
 
   <form action="{% url 'like_post' post.pk %}" method="POST">
     {% csrf_token %}
@@ -36,6 +41,9 @@ No Comments <a href="{% url 'add_comment' post.pk %}">Add Comment</a><br/>
 <div class="comment-entry">
 	<h2>{{ comment.subject }}</h2> Posted by: {{ comment.author }} | date: {{ comment.date_added }}<hr>
 <p>{{ comment.body }}</br>
+  {% if comment.cover %}
+  <img src="{{ comment.cover.url }}" alt="{{ post.title }}" width="500" height="450">
+{% endif %}
 {% if user.is_authenticated %}
   {% if user.id == comment.author.id %}
   <div class=editlinks>
