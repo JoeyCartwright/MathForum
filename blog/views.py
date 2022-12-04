@@ -11,9 +11,6 @@ def LikeView(request, pk):
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
-
-
-
 class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
@@ -41,7 +38,9 @@ class CommentDeleteView(DeleteView):
 
 class BlogDetailView(DetailView):
     model = Post
+    form_class = PostForm
     template_name = 'post_detail.html'
+    success_url = reverse_lazy("home") 
     
     def get_context_data(self, *args, **kwargs):
         context = super(BlogDetailView, self).get_context_data (**kwargs)
@@ -56,11 +55,11 @@ class BlogCreateView(CreateView):
     template_name = "post_new.html"
     #fields = ["title", "author", "body"]
 
-
 class BlogUpdateView(UpdateView):
     model = Post
     form_class = EditForm
     template_name = "post_edit.html"
+    success_url = reverse_lazy("home")
     #fields = ["title", "body"]
 
 class BlogDeleteView(DeleteView):

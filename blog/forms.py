@@ -4,7 +4,7 @@ from .models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'author', 'body')
+        fields = ('title', 'author', 'body', 'cover')
 
         widgets = {
                 'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -20,7 +20,7 @@ class PostForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body')
+        fields = ('title', 'body', 'cover')
 
         widgets = {
                 'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -30,7 +30,7 @@ class EditForm(forms.ModelForm):
 class CommentEditForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('subject', 'body')
+        fields = ('subject', 'body', 'cover')
 
         widgets = {
                 'subject': forms.TextInput(attrs={'class': 'form-control'}),
@@ -40,7 +40,7 @@ class CommentEditForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('subject', 'author', 'body')
+        fields = ('subject', 'author', 'body', 'cover')
 
         widgets = {
                 'subject': forms.TextInput(attrs={'class': 'form-control'}),
